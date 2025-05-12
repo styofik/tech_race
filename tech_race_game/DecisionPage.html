@@ -1,0 +1,41 @@
+{{ block title }}
+Раунд {{ player.round_number}}
+{{ endblock }}
+{{ block content }}
+
+<p>Результаты предыдущего раунда:</p>
+<table class="table">
+    <tr>
+        <th>Технология №</th>
+        <th>Текущий уровень</th>
+        <th>Вложений в предыдущий раунд</th>
+    </tr>
+    {{ for p in players }}
+    {{ if player.id_in_group == p.id_in_group }}
+    <tr style="background-color: #b6cdff">
+        <td>{{
+            p.id_in_group }}
+        </td>
+        <td>{{ p.tech_level }}</td>
+        <td>{{ p.current_investments }}</td>
+    </tr>
+    {{else }}
+    <tr>
+        <td>{{
+            p.id_in_group }}
+        </td>
+        <td>{{ p.tech_level }}</td>
+        <td>{{ p.current_investments }}</td>
+    </tr>
+    {{ endif }}
+    {{ endfor }}
+</table>
+<p>Вы <strong>игрок {{ player.id_in_group }}</strong>, ваша собственная технология выделена в таблице цветом.</p>
+
+
+{{ formfields player.decision }}
+{{ next_button }}
+
+<div style="background-color: #fcf9e5">{{ include_sibling 'instructions.html' }}</div>
+
+{{ endblock }}
