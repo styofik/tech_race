@@ -6,19 +6,20 @@ doc = """
 Игра моделирует гонку технологий, в которой игроки могут выбирать инвестировать в чужую технологию вместо своей.
 """
 
-
+from tech_race_game import C
+ 
 class C(BaseConstants):
-    NAME_IN_URL = 'tech_race_game'
-    PLAYERS_PER_GROUP = 3
+    NAME_IN_URL = 'tech_race_game_copy1'
+    PLAYERS_PER_GROUP = C.PLAYERS_PER_GROUP
     TECHNOLOGIES = [i for i in range(1,PLAYERS_PER_GROUP+1)]
-    T_MAX = 12  # Максимальное количество периодов
+    T_MAX = C.T_MAX  # Максимальное количество периодов
     NUM_ROUNDS = T_MAX
 
     # Параметры игры
-    ALPHA = 0.5  # Параметр для функции вероятности
-    L = 5     # Целевой уровень для победы
-    V = cu(20)  # Выигрыш за успешное вложение
-    V_NATIVE = cu(50)  # Выигрыш за победу родной технологии
+    ALPHA = C.ALPHA  # Параметр для функции вероятности
+    L = C.L     # Целевой уровень для победы
+    V = C.V  # Выигрыш за успешное вложение
+    V_NATIVE = C.V_NATIVE  # Выигрыш за победу родной технологии
     # RHO = 0.1  # Ставка дисконтирования
 
     prob_values_ks = [k for k in range(1, PLAYERS_PER_GROUP + 1)]
@@ -28,7 +29,8 @@ class C(BaseConstants):
     
 
 class Subsession(BaseSubsession):
-    pass
+    def creating_session(subsession):
+        subsession.group_randomly()
 
 
 class Group(BaseGroup):
@@ -64,7 +66,7 @@ class ShuffleWaitPage(WaitPage):
         if subsession.round_number == 1:
             subsession.group_randomly()
         else:
-            subsession.group_like_round(1)    
+            subsession.group_like_round(1)
 
 
 class Instruction(Page):

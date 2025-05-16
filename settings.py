@@ -4,8 +4,14 @@ SESSION_CONFIGS = [
     dict(
         name='tech_race_game',
         display_name='Гонка технологий',
-        app_sequence=['tech_race_game'],
-        num_demo_participants=3,
+        app_sequence=['welcomeapp',
+                      'tech_race_game',
+                      'tech_race_game_copy1',
+                      'tech_race_game_copy2',
+                      'tech_race_game_copy3',
+                      'tech_race_game_copy4',
+                      'finalresults'],
+        num_demo_participants=4,
     ),
 ]
 

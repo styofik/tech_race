@@ -1,0 +1,23 @@
+{{ block title }}
+Финальные результаты
+{{ endblock }}
+{{ block content }}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Участник</th>
+            <th>Выигрыш</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{ for p in players }}
+        <tr>
+            <td>{{ p.participant.label }}</td>
+            <td>{{ p.participant.payoff }}</td>
+        </tr>
+        {{ endfor }}
+    </tbody>
+</table>
+
+{{ endblock }}
